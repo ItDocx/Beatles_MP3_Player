@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_60sdp"
+    android:background="@drawable/bg_toolbar">
+
+    <ImageView
+        android:id="@+id/menu_btn"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:src="@drawable/ic_menu" />
+
+    <TextView
+        android:id="@+id/title_TV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Beatles MP3 Player"
+        android:textColor="@color/darkorange"
+        android:textSize="@dimen/_17ssp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/search_btn"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:src="@drawable/ic_search" />
+
+
+
+
+
+</RelativeLayout>

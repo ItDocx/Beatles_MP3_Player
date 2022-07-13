@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Beatles MP3 Player</string>
+
+
+    <string name="Shuffle_btn">Shuffle</string>
+    <string name="Favourites_btn">Favourites</string>
+    <string name="Playlist_btn">Playlist</string>
+    <string name="Tottal_songs_title">Total Songs</string>
+    <string name="songs_title">Diljit Dosanjh: CLASH (Official) Music Video | GOAT - YouTube</string>
+
+
+</resources>

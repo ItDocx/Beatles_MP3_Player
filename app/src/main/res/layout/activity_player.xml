@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".PlayerActivity">
+
+
+    <include
+        android:id="@+id/player_toolbar"
+        layout="@layout/music_toolbar"/>
+
+
+    <ImageView
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:src="@drawable/splash2"
+        android:id="@+id/poster_player"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:maxLines="1"
+        android:padding="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/poster_player"
+        android:id="@+id/song_title"
+        android:textAlignment="center"
+        android:text="@string/songs_title"
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/white"
+    />
+
+    <RelativeLayout
+
+        android:id="@+id/layout_nav_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/song_title"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/prev_btn"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_weight="1"
+            app:backgroundTint="@color/background"
+            app:icon="@drawable/ic_prev"
+            app:iconTint="@color/darkorange"
+            app:strokeColor="@color/darkorange"
+            app:strokeWidth="@dimen/_1sdp" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/play_btn"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_toEndOf="@id/prev_btn"
+            android:layout_weight="1"
+            app:strokeWidth="@dimen/_1sdp"
+            app:strokeColor="@color/darkorange"
+            app:backgroundTint="@color/background"
+            app:icon="@drawable/ic_play_arrow"
+            app:iconTint="@color/darkorange" />
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/next_btn"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_toEndOf="@id/play_btn"
+            android:layout_weight="1"
+            app:iconTint="@color/darkorange"
+            app:strokeColor="@color/darkorange"
+            app:strokeWidth="@dimen/_1sdp"
+            app:icon="@drawable/ic_forward"
+            app:backgroundTint="@color/background"
+        />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/layout_progress"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_nav_btn"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <TextView
+            android:padding="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:text="00:40"
+            android:id="@+id/duration_txt1"/>
+
+        <androidx.appcompat.widget.AppCompatSeekBar
+            android:id="@+id/progress_duration"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/duration_txt1"
+            android:thumbTint="@color/darkorange"
+            android:progressTint="@color/darkorange"
+            android:padding="@dimen/_5sdp"
+            />
+
+
+        <TextView
+            android:padding="@dimen/_5sdp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:layout_toEndOf="@id/progress_duration"
+            android:text="00:40"
+            android:id="@+id/duration_txt2"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_progress"
+        android:orientation="horizontal">
+
+    <Button
+        android:padding="@dimen/_5sdp"
+        android:drawableTop="@drawable/ic_repeat_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:id="@+id/player_repeat_btn"
+        />
+
+        <Button
+            android:padding="@dimen/_5sdp"
+            android:drawableTop="@drawable/ic_wave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/player_wave_btn"
+
+            />
+
+        <Button
+            android:padding="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/player_stopwatch_btn"
+            android:drawableTop="@drawable/ic_timer"
+            />
+
+        <Button
+            android:padding="@dimen/_5sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:id="@+id/player_share_btn"
+            android:drawableTop="@drawable/ic_share"
+
+
+            />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
