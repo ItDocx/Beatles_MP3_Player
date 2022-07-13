@@ -165,12 +165,12 @@
 
         <Button
             android:padding="@dimen/_5sdp"
-            android:drawableTop="@drawable/ic_wave"
+            android:drawableTop="@drawable/ic_equalizer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:id="@+id/player_wave_btn"
+            android:id="@+id/player_equalizer_btn"
 
             />
 

@@ -78,8 +78,11 @@
             android:layout_marginHorizontal="@dimen/_5sdp"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_songs"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            tools:listitem="@layout/songs_list_items"
             />
 
     </LinearLayout>
