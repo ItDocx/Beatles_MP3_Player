@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".FavouriteActivity">
+
+    <include
+        android:id="@+id/fav_toolbar"
+        layout="@layout/music_toolbar"/>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:backgroundTint="@color/background"
+        app:strokeWidth="@dimen/_2sdp"
+        app:strokeColor="@color/darkorange"
+        app:icon="@drawable/ic_shuffle"
+        app:iconTint="@color/darkorange"
+        android:id="@+id/fav_shuffle_btn"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
