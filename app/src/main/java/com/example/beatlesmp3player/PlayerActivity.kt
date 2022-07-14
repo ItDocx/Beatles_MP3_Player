@@ -1,5 +1,6 @@
 package com.example.beatlesmp3player
 
+import android.content.Intent
 import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,13 @@ class PlayerActivity : AppCompatActivity() {
 
         back_btn_toolbar.setImageResource(R.drawable.ic_prev)
         fav_btn_toolbar.setImageResource(R.drawable.ic_favorite_empty)
+
+        back_btn_toolbar.setOnClickListener{
+
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
+        }
+
 
     }
 }

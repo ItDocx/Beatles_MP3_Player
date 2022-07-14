@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/_60sdp"
+    android:id="@+id/toolbar_design"
     android:background="@drawable/bg_toolbar">
 
     <ImageView
@@ -23,6 +24,7 @@
         android:textStyle="bold" />
 
     <ImageView
+        android:layout_gravity="end"
         android:id="@+id/search_btn"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"
@@ -30,9 +32,4 @@
         android:layout_centerVertical="true"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:src="@drawable/ic_search" />
-
-
-
-
-
-</RelativeLayout>
+</Toolbar>

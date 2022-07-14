@@ -7,7 +7,11 @@
     <string name="Playlist_btn">Playlist</string>
     <string name="Tottal_songs_title">Total Songs</string>
     <string name="Fav_title">Favourite Songs</string>
+    <string name="Playlist_title">Play List</string>
     <string name="songs_title">Diljit Dosanjh: CLASH (Official) Music Video | GOAT - YouTube</string>
-
+    
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="Slogan">Let the Music Speak!</string>
 
 </resources>

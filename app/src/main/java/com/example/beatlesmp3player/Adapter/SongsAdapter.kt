@@ -34,18 +34,12 @@ class SongsAdapter(private val mList: List<SongsLIst>) : RecyclerView.Adapter<So
     // binds the list items to a view
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val ItemsViewModel = mList[position]
 
         // sets the image to the imageview from our itemHolder class
-        holder.imageView.setImageResource(ItemsViewModel.image)
+        holder.textView.text = mList[position].title
+        holder.song_album.text = mList[position].album
+        holder.song_duration.text = mList[position].artist
 
-        // sets the text to the textview from our itemHolder class
-        holder.textView.setText(ItemsViewModel.text)
-
-        holder.itemView.setOnClickListener{
-
-
-        }
 
 
     }
@@ -59,8 +53,8 @@ class SongsAdapter(private val mList: List<SongsLIst>) : RecyclerView.Adapter<So
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = ItemView.findViewById(R.id.song_icon)
         val textView: TextView = ItemView.findViewById(R.id.song_name)
-
-
+        val song_duration = itemView.findViewById<TextView>(R.id.song_duration)
+        val song_album = itemView.findViewById<TextView>(R.id.song_album)
 
     }
 }

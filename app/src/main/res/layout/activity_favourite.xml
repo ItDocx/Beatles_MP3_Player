@@ -11,4 +11,20 @@
         android:id="@+id/fav_toolbar"
         layout="@layout/music_toolbar"/>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:backgroundTint="@color/background"
+        app:strokeWidth="@dimen/_2sdp"
+        app:strokeColor="@color/darkorange"
+        app:icon="@drawable/ic_shuffle"
+        app:iconTint="@color/darkorange"
+        android:id="@+id/fav_shuffle_btn"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

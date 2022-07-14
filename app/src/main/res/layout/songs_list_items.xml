@@ -10,13 +10,12 @@
     app:cardCornerRadius="@dimen/_5sdp"
     >
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/layout_song_list"
         android:background="@drawable/bg_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:padding="5dp"
-        android:clickable="true"
         >
 
         <ImageView
@@ -27,9 +26,10 @@
             />
 
         <TextView
-            android:layout_gravity="center_vertical"
             android:maxLines="1"
+            android:layout_toEndOf="@id/song_icon"
             android:id="@+id/song_name"
+            android:maxLength="25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -39,6 +39,34 @@
             android:textSize="@dimen/_16ssp"
             android:textStyle="bold" />
 
-    </LinearLayout>
+
+        <TextView
+            android:maxLines="1"
+            android:layout_below="@id/song_name"
+            android:layout_toEndOf="@id/song_icon"
+            android:id="@+id/song_album"
+            android:maxLength="30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="Song Name"
+            android:textColor="@color/background"
+             />
+
+
+        <TextView
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_alignParentRight="true"
+            android:maxLines="1"
+            android:id="@+id/song_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="15dp"
+            android:text="04:00"
+            android:textColor="@color/background" />
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
