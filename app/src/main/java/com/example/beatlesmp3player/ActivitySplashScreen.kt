@@ -15,7 +15,7 @@ class ActivitySplashScreen : AppCompatActivity() {
 
         image.alpha = 0f
 
-        image.animate().setDuration(3500).alpha(1f).withEndAction{
+        image.animate().setDuration(1000).alpha(1f).withEndAction{
             var intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
 

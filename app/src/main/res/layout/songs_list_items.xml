@@ -22,8 +22,7 @@
             android:id="@+id/song_icon"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
-            android:src="@drawable/splash1"
-            />
+            android:src="@drawable/splash1" />
 
         <TextView
             android:maxLines="1"

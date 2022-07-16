@@ -72,11 +72,11 @@
             android:layout_marginHorizontal="@dimen/_5sdp"
             android:layout_toEndOf="@id/prev_btn"
             android:layout_weight="1"
-            app:strokeWidth="@dimen/_1sdp"
-            app:strokeColor="@color/darkorange"
             app:backgroundTint="@color/background"
             app:icon="@drawable/ic_play_arrow"
-            app:iconTint="@color/darkorange" />
+            app:iconTint="@color/darkorange"
+            app:strokeColor="@color/darkorange"
+            app:strokeWidth="@dimen/_1sdp" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/next_btn"
