@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.media.Image
 import android.media.MediaPlayer
 import android.media.audiofx.AudioEffect
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
@@ -162,6 +163,18 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
             }
         }
 
+        // Share Button Listener
+
+        binding.playerShareBtn.setOnClickListener{
+
+            Toast.makeText(this,"Please select preffered sharing option",Toast.LENGTH_SHORT).show()
+            val shareIntent = Intent()
+            shareIntent.action = Intent.ACTION_SEND
+            shareIntent.type = "audio/*"
+            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(songsListPA[songPosition].path))
+            startActivity(Intent.createChooser(shareIntent,"Sharing File....!"))
+        }
+
 
     }
     // Function Setting Toolbar Icons & Functionality
@@ -190,7 +203,6 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
         if (repeat) binding.playerRepeatBtn.setColorFilter(ContextCompat.getColor(this,R.color.darkorange))
 
-        if (min_15 || min_30 || min_45) binding.playerStopwatchBtn.setColorFilter(ContextCompat.getColor(this,R.color.gray))
 
     }
 

@@ -17,5 +17,13 @@
     <string name="min_15">15 Minutes</string>
     <string name="min_30">30 Minutes</string>
     <string name="min_45">45 Minutes</string>
+    <string name="search_View">Search View</string>
+
+
+
+    <string name="feedback">Feedback</string>
+    <string name="settings">Settings</string>
+    <string name="aboutus">About us</string>
+    <string name="exit">Exit</string>
 
 </resources>

@@ -8,8 +8,10 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -39,8 +41,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("SetTextI18n", "NotifyDataSetChanged")
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_BeatlesMP3Player)
         super.onCreate(savedInstanceState)
 
         //Permission Function
@@ -51,10 +54,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        toggle = ActionBarDrawerToggle(this,binding.root,R.string.open,R.string.close)
-        binding.root.addDrawerListener(toggle)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toggle.syncState()
+
 
         // Fix Runtime Permission Bug
 
@@ -82,6 +82,24 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,PlayListActivity::class.java))
 
         }
+
+
+
+
+        // NavigationView Listener
+        binding.navView.setNavigationItemSelectedListener{
+            when(it.itemId){
+
+                R.id.feedback_btn -> Toast.makeText(baseContext,"Feedback",Toast.LENGTH_SHORT).show()
+                R.id.settings_btn -> Toast.makeText(baseContext,"Settings",Toast.LENGTH_SHORT).show()
+                R.id.aboutUs_btn -> Toast.makeText(baseContext,"About Us",Toast.LENGTH_SHORT).show()
+                R.id.exit_btn -> exitProcess(1)
+            }
+            true
+        }
+
+
+
 
     }
 
@@ -147,6 +165,15 @@ class MainActivity : AppCompatActivity() {
        //     binding.refresher.isRefreshing = false
 
 
+        toggle = ActionBarDrawerToggle(this,binding.root,R.string.open,R.string.close)
+        binding.root.addDrawerListener(toggle)
+        toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
+
+
 
 
 
@@ -192,18 +219,35 @@ class MainActivity : AppCompatActivity() {
             cursor.close()
         }
         return tempList
-
-
     }
-
     override fun onDestroy() {
         super.onDestroy()
-
-        if(!PlayerActivity.isPlaying && PlayerActivity.songsServices != null)
-        {
+        if(!PlayerActivity.isPlaying && PlayerActivity.songsServices != null) {
             exitApplication()
-        }
+        } }
 
+    @SuppressLint("ResourceType")
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        menuInflater.inflate(R.menu.search_songs,menu)
+        var searchView = menu?.findItem(R.id.search_songs)?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean = true
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Toast.makeText(this@MainActivity,newText.toString(),Toast.LENGTH_SHORT).show()
+                return true
+            }
+
+        })
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item))
+            return true
+
+        return super.onOptionsItemSelected(item)
     }
 
 }
