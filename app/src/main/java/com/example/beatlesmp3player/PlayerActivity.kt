@@ -1,34 +1,53 @@
 package com.example.beatlesmp3player
 
+import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
+import android.graphics.Color
 import android.media.Image
 import android.media.MediaPlayer
+import android.media.audiofx.AudioEffect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.provider.MediaStore
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.beatlesmp3player.Models.SongsLIst
+import com.example.beatlesmp3player.Models.exitApplication
+import com.example.beatlesmp3player.Models.formatDuration
+import com.example.beatlesmp3player.Models.setSongsPosition
 import com.example.beatlesmp3player.Services.SongsServices
 import com.example.beatlesmp3player.databinding.ActivityPlayerBinding
+import com.example.beatlesmp3player.databinding.BottomSheetDialogueBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.lang.Exception
+import java.util.*
 import java.util.Collections.addAll
+import kotlin.collections.ArrayList
+import kotlin.math.max
+import kotlin.system.exitProcess
 
-class PlayerActivity : AppCompatActivity(), ServiceConnection {
+class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
 
-    private lateinit var binding: ActivityPlayerBinding
+
 
    companion object {
         lateinit var songsListPA: ArrayList<SongsLIst>
         var songPosition: Int=0
        var isPlaying: Boolean = false
        var songsServices: SongsServices?= null
-
+       @SuppressLint("StaticFieldLeak")
+       lateinit var binding: ActivityPlayerBinding
+       var repeat: Boolean = false
+       var min_15: Boolean = false
+       var min_30: Boolean = false
+       var min_45: Boolean = false
    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,6 +85,83 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
             prev_nextbtn(increment = true)
         }
 
+        // SeekBar Listener
+
+        binding.progressDuration.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+
+                if (fromUser) songsServices!!.mediaPlayer!!.seekTo(progress)
+
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
+        })
+
+        //Repeat Button Listener
+
+        binding.playerRepeatBtn.setOnClickListener{
+
+            if (!repeat){
+                repeat = true
+                binding.playerRepeatBtn.setImageResource(R.drawable.ic_repeat_one)
+            }
+            else
+            {
+                repeat = false
+                binding.playerRepeatBtn.setImageResource(R.drawable.ic_repeat_all)
+
+            }
+
+        }
+
+        //Equalizer Button Listener
+        binding.playerEqualizerBtn.setOnClickListener{
+
+
+                try {
+                    val EQIntent = Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL)
+                    EQIntent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, songsServices!!.mediaPlayer!!.audioSessionId)
+                    EQIntent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME,baseContext.packageName)
+                    EQIntent.putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
+                    startActivityForResult(EQIntent,13)
+
+                }catch (e:Exception){
+
+                    Toast.makeText(this,"Equalizer Feature not Supported!!",Toast.LENGTH_LONG).show()
+                } }
+
+        // Timer Bottom Sheet Dialogue
+
+        binding.playerStopwatchBtn.setOnClickListener{
+            val timer = min_15 || min_30 || min_45
+            if (!timer) showBottomSheetDialogue()
+
+            else {
+
+                val builder = MaterialAlertDialogBuilder(this)
+                builder.setTitle(" Stop Timer ")
+                    .setMessage(" Do you want to Stop Timer? ")
+                    .setPositiveButton("Yes"){_, _ ->
+
+                        min_15 = false
+                        min_30 = false
+                        min_45 = false
+                    }.setNegativeButton("No"){dialog,_ ->
+                        dialog.dismiss()
+                    }
+
+                val customDialoge = builder.create()
+                customDialoge.show()
+                customDialoge.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.RED)
+                customDialoge.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.RED)
+
+
+
+            }
+        }
+
 
     }
     // Function Setting Toolbar Icons & Functionality
@@ -77,10 +173,7 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
         back_btn_toolbar.setImageResource(R.drawable.ic_prev)
         fav_btn_toolbar.setImageResource(R.drawable.ic_favorite_empty)
 
-        back_btn_toolbar.setOnClickListener{
-
-            startActivity(Intent(this,MainActivity::class.java))
-            finish() }
+        back_btn_toolbar.setOnClickListener{ finish() }
 
         fav_btn_toolbar.setOnClickListener{
             fav_btn_toolbar.setImageResource(R.drawable.ic_favorite)
@@ -95,26 +188,14 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
 
         binding.songTitle.text = songsListPA[songPosition].title
 
+        if (repeat) binding.playerRepeatBtn.setColorFilter(ContextCompat.getColor(this,R.color.darkorange))
+
+        if (min_15 || min_30 || min_45) binding.playerStopwatchBtn.setColorFilter(ContextCompat.getColor(this,R.color.gray))
+
     }
 
 
-// Initializing MediaPlayer
-    private fun initializeMediaPlayer() {
-    try {
-        if (songsServices!!.mediaPlayer==null) songsServices!!.mediaPlayer = MediaPlayer()
-        songsServices!!.mediaPlayer!!.reset()
-        songsServices!!.mediaPlayer!!.setDataSource(songsListPA[songPosition].path)
-        songsServices!!.mediaPlayer!!.prepare()
-        songsServices!!.mediaPlayer!!.start()
-        isPlaying = true
 
-
-        // Setting Image Icon
-        binding.playBtn.setIconResource(R.drawable.ic_pause)
-
-    }catch (e:Exception){
-        return
-    } }
 
     //Initialize Music Player Layout
 
@@ -145,17 +226,52 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
 
     }
 
+
+    // Initializing MediaPlayer
+    private fun initializeMediaPlayer() {
+        try {
+            if (PlayerActivity.songsServices!!.mediaPlayer==null) PlayerActivity.songsServices!!.mediaPlayer = MediaPlayer()
+            PlayerActivity.songsServices!!.mediaPlayer!!.reset()
+            PlayerActivity.songsServices!!.mediaPlayer!!.setDataSource(PlayerActivity.songsListPA[PlayerActivity.songPosition].path)
+            PlayerActivity.songsServices!!.mediaPlayer!!.prepare()
+            PlayerActivity.songsServices!!.mediaPlayer!!.start()
+            PlayerActivity.isPlaying = true
+
+
+            // Setting Image Icon
+            PlayerActivity.binding.playBtn.setIconResource(R.drawable.ic_pause)
+
+            PlayerActivity.songsServices!!.showNotification(R.drawable.ic_pause)
+
+            // Duration TV
+            binding.durationTxt1.text = formatDuration(songsServices!!.mediaPlayer!!.currentPosition.toLong())
+            binding.durationTxt2.text = formatDuration(songsServices!!.mediaPlayer!!.duration.toLong())
+
+            // Adding duration in SeekBar
+            binding.progressDuration.progress = 0
+            binding.progressDuration.max = songsServices!!.mediaPlayer!!.duration
+
+            songsServices!!.mediaPlayer!!.setOnCompletionListener(this)
+
+        }catch (e: Exception){
+            return
+        } }
+
     // Play & Pause Functionality
 
     private fun playSongs(){
         binding.playBtn.setIconResource(R.drawable.ic_pause)
         isPlaying = true
+        songsServices!!.showNotification(R.drawable.ic_pause)
         songsServices!!.mediaPlayer!!.start()
+
+
     }
 
     private fun pauseSongs(){
 
         binding.playBtn.setIconResource(R.drawable.ic_play_arrow)
+        songsServices!!.showNotification(R.drawable.ic_play_arrow)
         isPlaying = false
         songsServices!!.mediaPlayer!!.pause()
     }
@@ -179,33 +295,75 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection {
 
     }
 
-    //Set Songs Position
-    private fun setSongsPosition(increment: Boolean){
-
-        if (increment){
-            if (songsListPA.size -1 == songPosition)
-                songPosition =0
-            else ++songPosition
-        }
-        else{
-            if (0== songPosition)
-                songPosition = songsListPA.size -1
-            else --songPosition
-
-        }
-
-
-    }
-
     override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
         val binder = service as SongsServices.MyBinder
         songsServices = binder.currentSongService()
         initializeMediaPlayer()
-        songsServices!!.showNotification()
+        songsServices!!.seekBarSetup()
+
+
     }
 
     override fun onServiceDisconnected(name: ComponentName?) {
         songsServices = null
+    }
+
+    override fun onCompletion(mp: MediaPlayer?) {
+        setSongsPosition(increment = true)
+        initializeMediaPlayer()
+        try {
+            setLayout()
+        }catch (e:Exception){return} }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode ==13 || resultCode == RESULT_OK)
+            return
+    }
+
+    private fun showBottomSheetDialogue(){
+
+        val dialogue = BottomSheetDialog(this@PlayerActivity)
+        dialogue.setContentView(R.layout.bottom_sheet_dialogue)
+        dialogue.show()
+
+        // Adding 15 Minutes Toast on The minutes
+        dialogue.findViewById<LinearLayout>(R.id.layout_min15)?.setOnClickListener{
+            Toast.makeText(this,"Music Will stop after 15 minutes",Toast.LENGTH_SHORT).show()
+            binding.playerStopwatchBtn.setColorFilter(ContextCompat.getColor(this,R.color.gray))
+            min_15 = true
+            Thread{Thread.sleep(15 * 60000)
+            if (min_15) exitApplication()}.start()
+
+            dialogue.dismiss()
+        }
+
+        // Adding 30 Minutes Toast on The minutes
+        dialogue.findViewById<LinearLayout>(R.id.layout_min30)?.setOnClickListener{
+            Toast.makeText(this,"Music Will stop after 30 minutes",Toast.LENGTH_SHORT).show()
+            binding.playerStopwatchBtn.setColorFilter(ContextCompat.getColor(this,R.color.gray))
+            min_30 = true
+            Thread{Thread.sleep(30 * 60000)
+                if (min_30) exitApplication()}.start()
+            dialogue.dismiss()
+        }
+
+        // Adding 45 Minutes Toast on The minutes
+        dialogue.findViewById<LinearLayout>(R.id.layout_min45)?.setOnClickListener{
+            Toast.makeText(this,"Music Will stop after 45 minutes",Toast.LENGTH_SHORT).show()
+            binding.playerStopwatchBtn.setColorFilter(ContextCompat.getColor(this,R.color.gray))
+            min_45 = true
+            Thread{Thread.sleep(45 * 60000)
+                if (min_45) exitApplication()}.start()
+            dialogue.dismiss()
+        }
+
+
+
+
+
     }
 
 

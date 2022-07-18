@@ -28,7 +28,6 @@ class FavouriteActivity : AppCompatActivity() {
         fav_title.setText(R.string.Fav_title)
 
         back.setOnClickListener{
-            startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
 

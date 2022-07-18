@@ -20,9 +20,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.beatlesmp3player.Adapter.SongsAdapter
 import com.example.beatlesmp3player.Models.SongsLIst
+import com.example.beatlesmp3player.Models.exitApplication
 import com.example.beatlesmp3player.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
 import java.io.File
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
 
@@ -191,6 +193,16 @@ class MainActivity : AppCompatActivity() {
         }
         return tempList
 
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        if(!PlayerActivity.isPlaying && PlayerActivity.songsServices != null)
+        {
+            exitApplication()
+        }
 
     }
 

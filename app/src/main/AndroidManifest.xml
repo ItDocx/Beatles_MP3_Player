@@ -4,6 +4,7 @@
     package="com.example.beatlesmp3player">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 
     <application
         android:name=".Services.SongsApplication"
@@ -53,6 +54,8 @@
             tools:ignore="LockedOrientationActivity"
             />
         <service android:name=".Services.SongsServices"/>
+        <receiver android:name=".Receivers.NotificationReceivers"
+            android:enabled="true"/>
 
     </application>
 

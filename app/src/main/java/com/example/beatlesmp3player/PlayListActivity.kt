@@ -26,7 +26,6 @@ class PlayListActivity : AppCompatActivity() {
         fav_title.setText(R.string.Playlist_title)
 
         back.setOnClickListener{
-            startActivity(Intent(this,MainActivity::class.java))
             finish()
         }
 
