@@ -25,6 +25,8 @@ import com.example.beatlesmp3player.Models.SongsLIst
 import com.example.beatlesmp3player.Models.exitApplication
 import com.example.beatlesmp3player.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -34,16 +36,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var songAdapter: SongsAdapter
 
-
     // Lis for songs List
     companion object{
         lateinit var MusicList: ArrayList<SongsLIst>
+        lateinit var searchMusicList: ArrayList<SongsLIst>
+        var searching: Boolean = false
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_BeatlesMP3Player)
         super.onCreate(savedInstanceState)
 
         //Permission Function
@@ -61,6 +61,20 @@ class MainActivity : AppCompatActivity() {
         if(requestStoragePermission()) {
             // Layout Initialization
             onInitializeLayout()
+
+            // for Retrieving  Favourite Songs Data using SharedPreferences with the help of JSON
+
+            FavouriteActivity.favList = ArrayList()
+            val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE)
+            val jsonString = editor.getString("favourites",null)
+            val typeToken = object: TypeToken<ArrayList<SongsLIst>>(){}.type
+            if (jsonString != null){
+                val data: ArrayList<SongsLIst> = GsonBuilder().create().fromJson(jsonString,typeToken)
+                FavouriteActivity.favList.addAll(data)
+
+            }
+
+
         }
 
         binding.ShuffleBtn.setOnClickListener {
@@ -72,8 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.FavouriteBtn.setOnClickListener{
-
-            startActivity(Intent(this,FavouriteActivity::class.java))
+                startActivity(Intent(this,FavouriteActivity::class.java))
         }
 
 
@@ -149,6 +162,7 @@ class MainActivity : AppCompatActivity() {
         // this creates a vertical layout Manager
 
      //Adding Swipe Refresh View
+        searching = false
 
             binding.recyclerSongs.layoutManager = LinearLayoutManager(this)
 
@@ -164,18 +178,10 @@ class MainActivity : AppCompatActivity() {
      //       songAdapter.notifyDataSetChanged()
        //     binding.refresher.isRefreshing = false
 
-
         toggle = ActionBarDrawerToggle(this,binding.root,R.string.open,R.string.close)
         binding.root.addDrawerListener(toggle)
         toggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-
-
-
-
-
-
 
     }
 
@@ -224,17 +230,43 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         if(!PlayerActivity.isPlaying && PlayerActivity.songsServices != null) {
             exitApplication()
-        } }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // for Storing Favourite Songs Data using SharedPreferences with the help of JSON
+        val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
+        val jsonString = GsonBuilder().create().toJson(FavouriteActivity.favList)
+        editor.putString("favourites",jsonString)
+        editor.apply()
+
+    }
 
     @SuppressLint("ResourceType")
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         menuInflater.inflate(R.menu.search_songs,menu)
-        var searchView = menu?.findItem(R.id.search_songs)?.actionView as SearchView
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+        var searchView = menu?.findItem(R.id.search_songs)?.actionView as androidx.appcompat.widget.SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean = true
             override fun onQueryTextChange(newText: String?): Boolean {
-                Toast.makeText(this@MainActivity,newText.toString(),Toast.LENGTH_SHORT).show()
+                searchMusicList = ArrayList()
+                if (newText != null){
+                    val userinput = newText.lowercase()
+                    for (song in MusicList){
+                        if (song.title.lowercase().contains(userinput)){
+                            searchMusicList.add(song)
+                            searching = true
+
+                            songAdapter.updateSongsList(searchList = searchMusicList)
+                        }
+
+                    }
+
+                }
                 return true
             }
 

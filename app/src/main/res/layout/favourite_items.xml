@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_5sdp"
+    android:elevation="@dimen/_5sdp"
+    app:cardUseCompatPadding="true"
+    android:background="@color/background"
+    app:cardCornerRadius="@dimen/_5sdp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/bg_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:id="@+id/fav_song_image"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_play_arrow"
+        android:background="@color/background"
+        android:contentDescription="@string/songs_title"/>
+    <TextView
+        android:layout_gravity="center"
+        android:background="@color/background"
+        android:padding="@dimen/_2sdp"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/songs_title"
+        android:maxLines="2"
+        android:textColor="@color/darkorange"
+        android:id="@+id/fav_song_name"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

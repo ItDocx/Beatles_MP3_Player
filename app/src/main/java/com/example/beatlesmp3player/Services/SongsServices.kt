@@ -13,6 +13,7 @@ import android.os.Looper
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
 import androidx.media.MediaSessionManager
+import com.example.beatlesmp3player.Fragments.NowPlaying
 import com.example.beatlesmp3player.Models.SongsLIst
 import com.example.beatlesmp3player.Models.formatDuration
 import com.example.beatlesmp3player.Models.getIMaginNotification
@@ -100,6 +101,8 @@ class SongsServices: Service() {
             // Adding duration in SeekBar
             PlayerActivity.binding.progressDuration.progress = 0
             PlayerActivity.binding.progressDuration.max = mediaPlayer!!.duration
+            // Setting nowPlaying Id
+            PlayerActivity.nowPlayingId = PlayerActivity.songsListPA[PlayerActivity.songPosition].id
 
         }catch (e: Exception){
             return

@@ -11,6 +11,22 @@
         android:id="@+id/fav_toolbar"
         layout="@layout/music_toolbar"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fav_Recycler"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fav_toolbar"
+        tools:listitem="@layout/favourite_items"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="3"
+        android:scrollbarThumbVertical="@drawable/scroll_icon"
+        android:scrollbars="vertical"
+        android:paddingBottom="@dimen/_30sdp"
+        />
+
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="@dimen/_65sdp"
         android:layout_height="@dimen/_65sdp"
@@ -26,5 +42,6 @@
         app:iconTint="@color/darkorange"
         android:id="@+id/fav_shuffle_btn"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.beatlesmp3player
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +12,9 @@ import com.example.beatlesmp3player.databinding.ActivityPlayListBinding
 class PlayListActivity : AppCompatActivity() {
 
  private lateinit var binding: ActivityPlayListBinding
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_BeatlesMP3PlayerCustom)
         super.onCreate(savedInstanceState)
 
         binding = ActivityPlayListBinding.inflate(layoutInflater)
@@ -22,6 +25,7 @@ class PlayListActivity : AppCompatActivity() {
         val fav_title = findViewById<TextView>(R.id.title_TV)
 
         back.setImageResource(R.drawable.ic_prev)
+
         search.setVisibility(View.GONE)
         fav_title.setText(R.string.Playlist_title)
 

@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:maxLines="1"
+        android:singleLine="true"
         android:padding="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -37,6 +37,8 @@
         android:text="@string/songs_title"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/white"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
     />
 
     <RelativeLayout
@@ -60,8 +62,9 @@
             android:layout_weight="1"
             app:backgroundTint="@color/background"
             app:icon="@drawable/ic_prev"
+            app:rippleColor="@color/darkorange"
             app:iconTint="@color/darkorange"
-            app:strokeColor="@color/darkorange"
+            app:strokeColor="@color/white"
             app:strokeWidth="@dimen/_1sdp" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -72,14 +75,16 @@
             android:layout_marginHorizontal="@dimen/_5sdp"
             android:layout_toEndOf="@id/prev_btn"
             android:layout_weight="1"
+            app:rippleColor="@color/darkorange"
             app:backgroundTint="@color/background"
             app:icon="@drawable/ic_play_arrow"
             app:iconTint="@color/darkorange"
-            app:strokeColor="@color/darkorange"
+            app:strokeColor="@color/white"
             app:strokeWidth="@dimen/_1sdp" />
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/next_btn"
+            app:rippleColor="@color/darkorange"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_centerVertical="true"
@@ -88,7 +93,7 @@
             android:layout_toEndOf="@id/play_btn"
             android:layout_weight="1"
             app:iconTint="@color/darkorange"
-            app:strokeColor="@color/darkorange"
+            app:strokeColor="@color/white"
             app:strokeWidth="@dimen/_1sdp"
             app:icon="@drawable/ic_forward"
             app:backgroundTint="@color/background"

@@ -1,6 +1,7 @@
 package com.example.beatlesmp3player.Adapter
 
 
+import android.annotation.SuppressLint
 import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.beatlesmp3player.Adapter.SongsAdapter.ViewHolder
+import com.example.beatlesmp3player.Fragments.NowPlaying
 import com.example.beatlesmp3player.MainActivity
 import com.example.beatlesmp3player.Models.SongsLIst
 import com.example.beatlesmp3player.Models.formatDuration
@@ -22,7 +24,8 @@ import com.example.beatlesmp3player.PlayerActivity
 import com.example.beatlesmp3player.R
 import com.example.beatlesmp3player.databinding.SongsListItemsBinding
 
-class SongsAdapter(private val mList: List<SongsLIst>,private val context:Context ) : RecyclerView.Adapter<SongsAdapter.ViewHolder>() {
+class SongsAdapter(private var mList: List<SongsLIst>,private val context:Context ) : RecyclerView.Adapter<SongsAdapter.ViewHolder>()
+{
 
 
 
@@ -50,11 +53,13 @@ class SongsAdapter(private val mList: List<SongsLIst>,private val context:Contex
 
 
         holder.root.setOnClickListener{
+            when{
+                MainActivity.searching -> sendData(ref = "MusicAdapterSearch", pos = position)
+                mList[position].id == PlayerActivity.nowPlayingId ->
+                    sendData(ref = "NowPlaying", pos = PlayerActivity.songPosition)
 
-            val intent = Intent(context,PlayerActivity::class.java)
-            intent.putExtra("index",position)
-            intent.putExtra("class","MusicAdapter")
-            ContextCompat.startActivity(context,intent,null)
+                else -> sendData(ref = "MusicAdapter", pos = position)
+            }
         }
 
 
@@ -66,6 +71,14 @@ class SongsAdapter(private val mList: List<SongsLIst>,private val context:Contex
         return mList.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateSongsList(searchList: ArrayList<SongsLIst>){
+        mList = ArrayList()
+        (mList as ArrayList<SongsLIst>).addAll(searchList)
+        notifyDataSetChanged()
+
+    }
+
     // Holds the views for adding it to image and text
     class ViewHolder(bindin: SongsListItemsBinding) : RecyclerView.ViewHolder(bindin.root) {
 
@@ -75,4 +88,12 @@ class SongsAdapter(private val mList: List<SongsLIst>,private val context:Contex
         val song_duration = bindin.songDuration
         val root = bindin.root
     }
+
+
+    private fun sendData(ref: String, pos: Int){
+
+        val intent = Intent(context,PlayerActivity::class.java)
+        intent.putExtra("index",pos)
+        intent.putExtra("class",ref)
+        ContextCompat.startActivity(context,intent,null)    }
 }

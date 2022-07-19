@@ -8,6 +8,7 @@ import android.window.SplashScreen
 
 class ActivitySplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.Theme_BeatlesMP3PlayerCustom)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
