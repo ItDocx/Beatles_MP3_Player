@@ -161,8 +161,7 @@ class MainActivity : AppCompatActivity() {
         // Initializing Recycler View
         // this creates a vertical layout Manager
 
-     //Adding Swipe Refresh View
-        searching = false
+
 
             binding.recyclerSongs.layoutManager = LinearLayoutManager(this)
 

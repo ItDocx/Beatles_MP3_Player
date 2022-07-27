@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="@dimen/_5sdp"
+    android:elevation="@dimen/_5sdp"
+    app:cardUseCompatPadding="true"
+    android:background="@color/background"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:strokeColor="@color/white"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:padding="@dimen/_5sdp"
+        android:background="@drawable/bg_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/playlist_song_image"
+            android:layout_width="@dimen/_125sdp"
+            android:layout_height="@dimen/_90sdp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/background"
+            android:contentDescription="@string/songs_title"
+            android:src="@drawable/ic_play_arrow" />
+
+        <TextView
+            android:id="@+id/playlist_song_name"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/playlist_song_image"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/background"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:maxLines="2"
+            android:padding="@dimen/_2sdp"
+            android:singleLine="true"
+            android:text="@string/songs_title"
+            android:textAlignment="viewStart"
+            android:textColor="@color/darkorange" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/playList_del_btn"
+            android:layout_toEndOf="@id/playlist_song_name"
+            android:layout_below="@id/playlist_song_image"
+            android:backgroundTint="@color/transparent"
+            android:src="@drawable/ic_delete"
+            android:contentDescription="@string/playlist_delete"
+            />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_10sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/darkorange"
+        app:boxStrokeWidth="@dimen/_1sdp"
+        app:startIconDrawable="@drawable/ic_playlist"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:hintTextColor="@color/background"
+        app:startIconTint="@color/darkorange"
+        android:hint="@string/playlist_name"
+        android:textColorHint="@color/background"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+<com.google.android.material.textfield.TextInputEditText
+    android:id="@+id/Playlist_name_ET"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:singleLine="true"
+    android:inputType="text"
+    android:maxLength="25" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        app:hintTextColor="@color/background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:boxStrokeColor="@color/darkorange"
+        app:boxStrokeWidth="@dimen/_1sdp"
+        app:startIconDrawable="@drawable/ic_playlist"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:startIconTint="@color/darkorange"
+        android:hint="@string/user_name"
+        android:textColorHint="@color/background"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/Playlist_UserName_ET"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:inputType="text"
+            android:maxLength="25" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

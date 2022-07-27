@@ -15,16 +15,16 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.beatlesmp3player.*
 import com.example.beatlesmp3player.Adapter.SongsAdapter.ViewHolder
 import com.example.beatlesmp3player.Fragments.NowPlaying
-import com.example.beatlesmp3player.MainActivity
 import com.example.beatlesmp3player.Models.SongsLIst
 import com.example.beatlesmp3player.Models.formatDuration
-import com.example.beatlesmp3player.PlayerActivity
-import com.example.beatlesmp3player.R
 import com.example.beatlesmp3player.databinding.SongsListItemsBinding
+import java.lang.reflect.Array
 
-class SongsAdapter(private var mList: List<SongsLIst>,private val context:Context ) : RecyclerView.Adapter<SongsAdapter.ViewHolder>()
+class SongsAdapter(private var mList: List<SongsLIst>,private val context:Context, private val detailsPlaylist: Boolean = false ,
+private val selectionActivity: Boolean = false) : RecyclerView.Adapter<SongsAdapter.ViewHolder>()
 {
 
 
@@ -52,17 +52,38 @@ class SongsAdapter(private var mList: List<SongsLIst>,private val context:Contex
             placeholder(R.drawable.potser).centerCrop()).into(holder.imageView)
 
 
-        holder.root.setOnClickListener{
-            when{
-                MainActivity.searching -> sendData(ref = "MusicAdapterSearch", pos = position)
-                mList[position].id == PlayerActivity.nowPlayingId ->
-                    sendData(ref = "NowPlaying", pos = PlayerActivity.songPosition)
+        when {
+            detailsPlaylist ->{
 
-                else -> sendData(ref = "MusicAdapter", pos = position)
+                holder.root.setOnClickListener{
+                    sendData(ref= "PlaylistDetailsAdapter", pos =position)
+                }
+
             }
-        }
 
+            selectionActivity->{
+                holder.root.setOnClickListener{
+                    if (addSogs(mList[position])){
+                        holder.root.setBackgroundColor(ContextCompat.getColor(context,R.color.darkorange))
+                    }
+                    else holder.root.setBackgroundColor(ContextCompat.getColor(context,R.color.white))
 
+                }
+
+            }
+
+       else-> {
+           holder.root.setOnClickListener {
+               when {
+                   MainActivity.searching -> sendData(ref = "MusicAdapterSearch", pos = position)
+                   mList[position].id == PlayerActivity.nowPlayingId ->
+                       sendData(ref = "NowPlaying", pos = PlayerActivity.songPosition)
+
+                   else -> sendData(ref = "MusicAdapter", pos = position)
+               }
+           }
+
+       }}
 
     }
 
@@ -96,4 +117,21 @@ class SongsAdapter(private var mList: List<SongsLIst>,private val context:Contex
         intent.putExtra("index",pos)
         intent.putExtra("class",ref)
         ContextCompat.startActivity(context,intent,null)    }
+
+    private fun addSogs(songs: SongsLIst):Boolean{
+        PlayListActivity.songsPlaylist.ref[PlaylistDetails.currentPlaylistPos].playList.forEachIndexed { index, songsLIst ->
+            if(songs.id == songs.id){
+                PlayListActivity.songsPlaylist.ref[PlaylistDetails.currentPlaylistPos].playList.removeAt(index)
+            return false
+            }
+        }
+        PlayListActivity.songsPlaylist.ref[PlaylistDetails.currentPlaylistPos].playList.add(songs)
+        return true
+    }
+
+    fun refreshSongs(){
+        mList = ArrayList()
+        mList = PlayListActivity.songsPlaylist.ref[PlaylistDetails.currentPlaylistPos].playList
+        notifyDataSetChanged()
+    }
 }

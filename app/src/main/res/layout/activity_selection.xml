@@ -5,43 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".FavouriteActivity">
-
+    tools:context=".SelectionActivity">
     <include
-        android:id="@+id/fav_toolbar"
+        android:id="@+id/search_toolbar"
         layout="@layout/music_toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/fav_Recycler"
+        android:id="@+id/searc_Recycler"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fav_toolbar"
-        tools:listitem="@layout/favourite_items"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/songs_list_items"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="3"
         android:scrollbarThumbVertical="@drawable/scroll_icon"
         android:scrollbars="vertical"
         android:paddingBottom="@dimen/_30sdp"
         />
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:layout_width="@dimen/_65sdp"
-        android:layout_height="@dimen/_65sdp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.889"
-        app:layout_constraintStart_toStartOf="parent"
-        app:backgroundTint="@color/background"
-        app:strokeWidth="@dimen/_1sdp"
-        app:strokeColor="@color/white"
-        app:icon="@drawable/ic_shuffle"
-        app:iconTint="@color/darkorange"
-        android:id="@+id/fav_shuffle_btn"
-        />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

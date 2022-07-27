@@ -13,6 +13,25 @@ import kotlin.system.exitProcess
 data class SongsLIst(val id:String, val title: String, val album:String, val artist:String,
                      val duration: Long, val path:String, val artUri: String)
 
+
+class Playlist{
+
+    lateinit var name:String
+    lateinit var playList: ArrayList<SongsLIst>
+    lateinit var createdOn:String
+    lateinit var createdBy: String
+}
+
+class SongsPlaylist{
+
+    var ref: ArrayList<Playlist> = ArrayList()
+}
+
+
+
+
+
+
 fun formatDuration(duration: Long):String{
 
     val minutes = TimeUnit.MINUTES.convert(duration, TimeUnit.MILLISECONDS)

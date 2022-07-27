@@ -300,6 +300,29 @@ class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCom
 
 
             }
+
+            "PlaylistDetailsAdapter"->{
+                val intent = Intent(this,SongsServices::class.java)
+                bindService(intent,this, BIND_AUTO_CREATE)
+                startService(intent)
+                songsListPA = ArrayList()
+                songsListPA.addAll(PlayListActivity.songsPlaylist.ref[PlaylistDetails.currentPlaylistPos].playList)
+                setLayout()
+            }
+
+            "detailsShuffle"->{
+
+                val intent = Intent(this,SongsServices::class.java)
+                bindService(intent,this, BIND_AUTO_CREATE)
+                startService(intent)
+                songsListPA = ArrayList()
+                songsListPA.addAll(PlayListActivity.songsPlaylist.ref[PlaylistDetails.currentPlaylistPos].playList)
+                songsListPA.shuffle()
+
+                setLayout()
+
+            }
+
         }
 
     }

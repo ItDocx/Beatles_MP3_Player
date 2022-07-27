@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".PlaylistDetails">
+
+    <include
+        android:id="@+id/details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/music_toolbar"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_details"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/details_toolbar"
+        android:background="@drawable/bg_card">
+        <ImageView
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="match_parent"
+            android:src="@drawable/potser"
+            android:scaleType="centerCrop"
+            android:id="@+id/detail_poster"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Songs: 4"
+            android:textColor="@color/darkorange"
+            android:layout_toEndOf="@+id/detail_poster"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:id="@+id/details_total" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_details_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_details">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/details_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:scrollbarThumbVertical="@drawable/scroll_icon"
+            android:scrollbars="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/songs_list_items" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_details_recycler">
+
+     <com.google.android.material.button.MaterialButton
+         android:layout_width="0dp"
+         android:layout_weight="1"
+         android:layout_gravity="center_vertical"
+         android:layout_height="wrap_content"
+         android:drawableStart="@drawable/ic_add"
+         android:drawableTint="@color/darkorange"
+         android:text="Add"
+         app:rippleColor="@color/darkorange"
+         android:id="@+id/details_add_btn"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_add"
+            android:drawableTint="@color/darkorange"
+            android:text="Remove All"
+            app:rippleColor="@color/darkorange"
+            app:iconTint="@color/darkorange"
+            android:id="@+id/details_remove_btn"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:visibility="invisible"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_marginBottom="@dimen/_60sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.889"
+        app:layout_constraintStart_toStartOf="parent"
+        app:backgroundTint="@color/background"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/white"
+        app:icon="@drawable/ic_shuffle"
+        app:iconTint="@color/darkorange"
+        android:id="@+id/detailsshuffle_btn"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

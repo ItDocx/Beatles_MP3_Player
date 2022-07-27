@@ -1,33 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/_120sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     tools:context=".Fragments.NowPlaying"
-    android:padding="@dimen/_5sdp"
-    >
+    android:padding="@dimen/_5sdp">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_70sdp">
+    android:layout_height="@dimen/_60sdp">
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_50sdp"
-        android:layout_centerVertical="true"
         android:src="@drawable/potser"
         android:id="@+id/songImageNP"
+        android:layout_centerVertical="true"
         android:layout_marginHorizontal="@dimen/_10sdp" />
 
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/next_btnNP"
+        android:layout_centerVertical="true"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        app:strokeColor="@color/white"
+        app:strokeWidth="@dimen/_1sdp"
         app:iconSize="@dimen/_20sdp"
-        android:layout_centerVertical="true"
         android:layout_marginEnd="@dimen/_5sdp"
         app:backgroundTint="@color/background"
         app:icon="@drawable/ic_navigate_next" />
@@ -36,11 +37,13 @@
         android:id="@+id/play_btnNP"
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_5sdp"
         android:layout_toStartOf="@id/next_btnNP"
         app:backgroundTint="@color/background"
+        app:strokeColor="@color/white"
+        app:strokeWidth="@dimen/_1sdp"
         app:icon="@drawable/ic_play_arrow"
         app:iconSize="@dimen/_20sdp" />
 
@@ -48,13 +51,13 @@
 
 
     <TextView
+        android:gravity="center_vertical"
         android:layout_toStartOf="@id/play_btnNP"
         android:layout_marginTop="@dimen/_5sdp"
         android:id="@+id/song_name_txtNP"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toEndOf="@id/songImageNP"
-        android:gravity="center_vertical"
         android:text="@string/songs_title"
         android:textColor="@color/darkorange"
         android:textSize="@dimen/_12ssp"
@@ -63,4 +66,9 @@
         android:singleLine="true"
         />
 </RelativeLayout>
-</FrameLayout>
+
+
+
+
+
+</LinearLayout>

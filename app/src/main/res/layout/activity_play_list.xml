@@ -12,7 +12,6 @@
         layout="@layout/music_toolbar"/>
 
 
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:layout_width="@dimen/_65sdp"
         android:layout_height="@dimen/_65sdp"
@@ -22,12 +21,29 @@
         app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="parent"
         app:backgroundTint="@color/background"
-        app:strokeWidth="@dimen/_2sdp"
-        app:strokeColor="@color/darkorange"
+        app:strokeWidth="@dimen/_1sdp"
+        app:strokeColor="@color/white"
         app:icon="@drawable/ic_add"
         app:iconTint="@color/darkorange"
         android:id="@+id/Playlist_add_btn"
         />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/PlayListRV"
+        android:paddingBottom="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_70sdp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:listitem="@layout/playlist_items"
+        android:scrollbarThumbVertical="@drawable/scroll_icon"
+        android:scrollbars="vertical"
+        app:spanCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/Playlist_toolbar"/>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
