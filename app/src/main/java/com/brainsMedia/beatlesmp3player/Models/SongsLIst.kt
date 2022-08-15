@@ -1,12 +1,8 @@
-package com.example.beatlesmp3player.Models
+package com.brainsMedia.beatlesmp3player.Models
 
-import android.content.Intent
-import android.icu.text.CaseMap
-import android.media.MediaMetadata
 import android.media.MediaMetadataRetriever
-import android.widget.Toolbar
-import com.example.beatlesmp3player.FavouriteActivity
-import com.example.beatlesmp3player.PlayerActivity
+import com.brainsMedia.beatlesmp3player.FavouriteActivity
+import com.brainsMedia.beatlesmp3player.PlayerActivity
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 

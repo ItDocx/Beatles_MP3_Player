@@ -1,27 +1,19 @@
-package com.example.beatlesmp3player.Adapter
+package com.brainsMedia.beatlesmp3player.Adapter
 
 
 import android.annotation.SuppressLint
-import android.app.DownloadManager
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
-import android.view.LayoutInflater.from
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.beatlesmp3player.*
-import com.example.beatlesmp3player.Adapter.SongsAdapter.ViewHolder
-import com.example.beatlesmp3player.Fragments.NowPlaying
-import com.example.beatlesmp3player.Models.SongsLIst
-import com.example.beatlesmp3player.Models.formatDuration
-import com.example.beatlesmp3player.databinding.SongsListItemsBinding
-import java.lang.reflect.Array
+import com.brainsMedia.beatlesmp3player.*
+import com.brainsMedia.beatlesmp3player.Models.SongsLIst
+import com.brainsMedia.beatlesmp3player.Models.formatDuration
+import com.brainsMedia.beatlesmp3player.databinding.SongsListItemsBinding
 
 class SongsAdapter(private var mList: List<SongsLIst>,private val context:Context, private val detailsPlaylist: Boolean = false ,
 private val selectionActivity: Boolean = false) : RecyclerView.Adapter<SongsAdapter.ViewHolder>()

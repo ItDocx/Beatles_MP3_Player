@@ -1,6 +1,5 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -8,8 +7,8 @@ import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.beatlesmp3player.Adapter.SongsAdapter
-import com.example.beatlesmp3player.databinding.ActivitySelectionBinding
+import com.brainsMedia.beatlesmp3player.Adapter.SongsAdapter
+import com.brainsMedia.beatlesmp3player.databinding.ActivitySelectionBinding
 
 class SelectionActivity : AppCompatActivity() {
 

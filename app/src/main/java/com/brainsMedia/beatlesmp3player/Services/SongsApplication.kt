@@ -1,4 +1,4 @@
-package com.example.beatlesmp3player.Services
+package com.brainsMedia.beatlesmp3player.Services
 
 import android.app.Application
 import android.app.NotificationChannel

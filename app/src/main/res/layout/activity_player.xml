@@ -62,8 +62,8 @@
             android:layout_weight="1"
             app:backgroundTint="@color/background"
             app:icon="@drawable/ic_prev"
-            app:rippleColor="@color/darkorange"
             app:iconTint="@color/darkorange"
+            app:rippleColor="@color/darkorange"
             app:strokeColor="@color/white"
             app:strokeWidth="@dimen/_1sdp" />
 

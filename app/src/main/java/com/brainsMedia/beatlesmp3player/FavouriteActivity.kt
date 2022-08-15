@@ -1,19 +1,16 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.beatlesmp3player.Adapter.FavoriteAdapter
-import com.example.beatlesmp3player.Adapter.SongsAdapter
-import com.example.beatlesmp3player.Models.SongsLIst
-import com.example.beatlesmp3player.databinding.ActivityFavouriteBinding
+import com.brainsMedia.beatlesmp3player.Adapter.FavoriteAdapter
+import com.brainsMedia.beatlesmp3player.Models.SongsLIst
+import com.brainsMedia.beatlesmp3player.databinding.ActivityFavouriteBinding
 
 class FavouriteActivity : AppCompatActivity() {
 

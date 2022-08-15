@@ -1,30 +1,24 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.beatlesmp3player.Adapter.SongsAdapter
-import com.example.beatlesmp3player.Models.SongsLIst
-import com.example.beatlesmp3player.Models.exitApplication
-import com.example.beatlesmp3player.databinding.ActivityMainBinding
-import com.google.android.material.navigation.NavigationView
+import com.brainsMedia.beatlesmp3player.Adapter.SongsAdapter
+import com.brainsMedia.beatlesmp3player.Models.SongsLIst
+import com.brainsMedia.beatlesmp3player.Models.exitApplication
+import com.brainsMedia.beatlesmp3player.databinding.ActivityMainBinding
+
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import java.io.File

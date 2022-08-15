@@ -1,4 +1,4 @@
-package com.example.beatlesmp3player.Fragments
+package com.brainsMedia.beatlesmp3player.Fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,11 +10,10 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.beatlesmp3player.Models.setSongsPosition
-import com.example.beatlesmp3player.PlayerActivity
-import com.example.beatlesmp3player.R
-import com.example.beatlesmp3player.Services.SongsServices
-import com.example.beatlesmp3player.databinding.FragmentNowPlayingBinding
+import com.brainsMedia.beatlesmp3player.Models.setSongsPosition
+import com.brainsMedia.beatlesmp3player.PlayerActivity
+import com.brainsMedia.beatlesmp3player.R
+import com.brainsMedia.beatlesmp3player.databinding.FragmentNowPlayingBinding
 
 
 class NowPlaying : Fragment() {

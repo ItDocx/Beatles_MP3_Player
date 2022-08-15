@@ -1,10 +1,9 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import android.window.SplashScreen
 
 class ActivitySplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

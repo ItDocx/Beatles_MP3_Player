@@ -1,12 +1,10 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -14,9 +12,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.beatlesmp3player.Adapter.SongsAdapter
-import com.example.beatlesmp3player.databinding.ActivityPlaylistDetailsBinding
-import com.example.beatlesmp3player.databinding.CustomDialogPlaylistBinding
+import com.brainsMedia.beatlesmp3player.Adapter.SongsAdapter
+import com.brainsMedia.beatlesmp3player.databinding.ActivityPlaylistDetailsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class PlaylistDetails : AppCompatActivity() {

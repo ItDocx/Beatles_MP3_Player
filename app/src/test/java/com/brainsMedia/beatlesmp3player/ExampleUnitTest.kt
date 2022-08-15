@@ -1,4 +1,4 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import org.junit.Test
 

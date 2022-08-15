@@ -1,35 +1,30 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import android.annotation.SuppressLint
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.graphics.Color
-import android.media.Image
 import android.media.MediaPlayer
 import android.media.audiofx.AudioEffect
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import android.provider.MediaStore
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.beatlesmp3player.Models.*
-import com.example.beatlesmp3player.Services.SongsServices
-import com.example.beatlesmp3player.databinding.ActivityPlayerBinding
-import com.example.beatlesmp3player.databinding.BottomSheetDialogueBinding
+import com.brainsMedia.beatlesmp3player.Models.*
+import com.brainsMedia.beatlesmp3player.Services.SongsServices
+import com.brainsMedia.beatlesmp3player.databinding.ActivityPlayerBinding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.lang.Exception
 import java.util.*
-import java.util.Collections.addAll
 import kotlin.collections.ArrayList
 import kotlin.math.max
-import kotlin.system.exitProcess
 
 class PlayerActivity : AppCompatActivity(), ServiceConnection, MediaPlayer.OnCompletionListener {
 

@@ -1,4 +1,4 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

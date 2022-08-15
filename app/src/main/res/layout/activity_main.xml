@@ -100,7 +100,7 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_link_NowPlaying"
-            android:name="com.example.beatlesmp3player.Fragments.NowPlaying"
+            android:name="com.brainsMedia.beatlesmp3player.Fragments.NowPlaying"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

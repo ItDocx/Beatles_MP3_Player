@@ -1,7 +1,6 @@
-package com.example.beatlesmp3player
+package com.brainsMedia.beatlesmp3player
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,13 +8,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.beatlesmp3player.Adapter.PlaylistAdapter
-import com.example.beatlesmp3player.Models.Playlist
-import com.example.beatlesmp3player.Models.SongsPlaylist
-import com.example.beatlesmp3player.databinding.ActivityPlayListBinding
-import com.example.beatlesmp3player.databinding.CustomDialogPlaylistBinding
+import com.brainsMedia.beatlesmp3player.Adapter.PlaylistAdapter
+import com.brainsMedia.beatlesmp3player.Models.Playlist
+import com.brainsMedia.beatlesmp3player.Models.SongsPlaylist
+import com.brainsMedia.beatlesmp3player.databinding.ActivityPlayListBinding
+import com.brainsMedia.beatlesmp3player.databinding.CustomDialogPlaylistBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.SimpleDateFormat
 import java.util.*

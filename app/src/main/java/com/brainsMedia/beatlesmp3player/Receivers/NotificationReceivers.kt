@@ -1,19 +1,17 @@
-package com.example.beatlesmp3player.Receivers
+package com.brainsMedia.beatlesmp3player.Receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.beatlesmp3player.Fragments.NowPlaying
-import com.example.beatlesmp3player.Models.exitApplication
-import com.example.beatlesmp3player.Models.favChecker
-import com.example.beatlesmp3player.Models.setSongsPosition
-import com.example.beatlesmp3player.PlayerActivity
-import com.example.beatlesmp3player.R
-import com.example.beatlesmp3player.Services.SongsApplication
-import kotlin.system.exitProcess
+import com.brainsMedia.beatlesmp3player.Fragments.NowPlaying
+import com.brainsMedia.beatlesmp3player.Models.exitApplication
+import com.brainsMedia.beatlesmp3player.Models.favChecker
+import com.brainsMedia.beatlesmp3player.Models.setSongsPosition
+import com.brainsMedia.beatlesmp3player.PlayerActivity
+import com.brainsMedia.beatlesmp3player.R
+import com.brainsMedia.beatlesmp3player.Services.SongsApplication
 
 class NotificationReceivers: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {

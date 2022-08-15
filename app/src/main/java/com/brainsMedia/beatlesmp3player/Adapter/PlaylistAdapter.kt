@@ -1,22 +1,20 @@
-package com.example.beatlesmp3player.Adapter
+package com.brainsMedia.beatlesmp3player.Adapter
 
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.beatlesmp3player.Models.Playlist
-import com.example.beatlesmp3player.PlayListActivity
-import com.example.beatlesmp3player.PlayerActivity
-import com.example.beatlesmp3player.PlaylistDetails
-import com.example.beatlesmp3player.R
-import com.example.beatlesmp3player.databinding.PlaylistItemsBinding
+import com.brainsMedia.beatlesmp3player.Models.Playlist
+import com.brainsMedia.beatlesmp3player.PlayListActivity
+import com.brainsMedia.beatlesmp3player.PlaylistDetails
+import com.brainsMedia.beatlesmp3player.R
+import com.brainsMedia.beatlesmp3player.databinding.PlaylistItemsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class PlaylistAdapter (private var playList: ArrayList<Playlist>, private val context: Context): RecyclerView.Adapter<PlaylistAdapter.ViewHolder>() {

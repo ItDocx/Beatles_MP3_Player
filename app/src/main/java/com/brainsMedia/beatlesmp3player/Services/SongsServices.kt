@@ -1,4 +1,4 @@
-package com.example.beatlesmp3player.Services
+package com.brainsMedia.beatlesmp3player.Services
 
 import android.annotation.SuppressLint
 import android.app.PendingIntent
@@ -12,14 +12,11 @@ import android.os.IBinder
 import android.os.Looper
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
-import androidx.media.MediaSessionManager
-import com.example.beatlesmp3player.Fragments.NowPlaying
-import com.example.beatlesmp3player.Models.SongsLIst
-import com.example.beatlesmp3player.Models.formatDuration
-import com.example.beatlesmp3player.Models.getIMaginNotification
-import com.example.beatlesmp3player.PlayerActivity
-import com.example.beatlesmp3player.R
-import com.example.beatlesmp3player.Receivers.NotificationReceivers
+import com.brainsMedia.beatlesmp3player.Models.formatDuration
+import com.brainsMedia.beatlesmp3player.Models.getIMaginNotification
+import com.brainsMedia.beatlesmp3player.PlayerActivity
+import com.brainsMedia.beatlesmp3player.R
+import com.brainsMedia.beatlesmp3player.Receivers.NotificationReceivers
 import java.lang.Exception
 
 class SongsServices: Service() {
