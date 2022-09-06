@@ -3,6 +3,7 @@ package com.brainsMedia.beatlesmp3player
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,9 +14,13 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.brainsMedia.beatlesmp3player.Adapter.SongsAdapter
+import com.brainsMedia.beatlesmp3player.Dialoges.AboutUsDialoge
+import com.brainsMedia.beatlesmp3player.Dialoges.RateUsDialoge
 import com.brainsMedia.beatlesmp3player.Models.SongsLIst
+import com.brainsMedia.beatlesmp3player.Models.SongsPlaylist
 import com.brainsMedia.beatlesmp3player.Models.exitApplication
 import com.brainsMedia.beatlesmp3player.databinding.ActivityMainBinding
 
@@ -67,6 +72,13 @@ class MainActivity : AppCompatActivity() {
                 FavouriteActivity.favList.addAll(data)
 
             }
+            PlayListActivity.songsPlaylist = SongsPlaylist()
+            val jsonStringPlaylist = editor.getString("SongsPlayList",null)
+            if (jsonStringPlaylist != null){
+                val dataPlaylist: SongsPlaylist = GsonBuilder().create().fromJson(jsonStringPlaylist,SongsPlaylist::class.java)
+                PlayListActivity.songsPlaylist = dataPlaylist
+
+            }
 
 
         }
@@ -97,9 +109,15 @@ class MainActivity : AppCompatActivity() {
         binding.navView.setNavigationItemSelectedListener{
             when(it.itemId){
 
-                R.id.feedback_btn -> Toast.makeText(baseContext,"Feedback",Toast.LENGTH_SHORT).show()
+                R.id.feedback_btn -> {
+                    settingRateUsDialoge()
+                    binding.mainDrawer!!.closeDrawer(GravityCompat.START)
+                }
                 R.id.settings_btn -> Toast.makeText(baseContext,"Settings",Toast.LENGTH_SHORT).show()
-                R.id.aboutUs_btn -> Toast.makeText(baseContext,"About Us",Toast.LENGTH_SHORT).show()
+                R.id.aboutUs_btn -> {
+                    setAboutUsDialoge()
+                    binding.mainDrawer!!.closeDrawer(GravityCompat.START)
+                }
                 R.id.exit_btn -> exitProcess(1)
             }
             true
@@ -233,6 +251,9 @@ class MainActivity : AppCompatActivity() {
         val editor = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
         val jsonString = GsonBuilder().create().toJson(FavouriteActivity.favList)
         editor.putString("favourites",jsonString)
+
+        val jsonStringPlaylist = GsonBuilder().create().toJson(PlayListActivity.songsPlaylist)
+        editor.putString("SongsPlaylist",jsonStringPlaylist)
         editor.apply()
 
     }
@@ -274,5 +295,26 @@ class MainActivity : AppCompatActivity() {
 
         return super.onOptionsItemSelected(item)
     }
+
+
+    fun settingRateUsDialoge() {
+        val rate = RateUsDialoge(this@MainActivity)
+        rate.getWindow()?.setBackgroundDrawable(
+            ColorDrawable(
+                resources
+                    .getColor(android.R.color.white)
+            )
+        )
+        rate.setCancelable(false)
+        rate.show()
+    }
+
+    fun setAboutUsDialoge() {
+        val dashBoardDialog = AboutUsDialoge(this@MainActivity)
+        dashBoardDialog.setCancelable(false)
+        dashBoardDialog.show()
+    }
+
+
 
 }

@@ -10,10 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.brainsMedia.beatlesmp3player.Adapter.FavoriteAdapter
 import com.brainsMedia.beatlesmp3player.Models.SongsLIst
+import com.brainsMedia.beatlesmp3player.Models.checkPlaylist
 import com.brainsMedia.beatlesmp3player.databinding.ActivityFavouriteBinding
 
 class FavouriteActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityFavouriteBinding
     private lateinit var favAdapter: FavoriteAdapter
 
@@ -30,7 +30,7 @@ class FavouriteActivity : AppCompatActivity() {
         binding = ActivityFavouriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        favList = checkPlaylist(favList)
 
         val back = findViewById<ImageView>(R.id.menu_btn)
         val search = findViewById<ImageView>(R.id.search_btn)

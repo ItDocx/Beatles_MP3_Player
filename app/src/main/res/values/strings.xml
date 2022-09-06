@@ -29,4 +29,21 @@
     <string name="playlist_name">Playlist Name</string>
 
 
+    <string name="aboutUS">About Us</string>
+    <string name="developer">Moazam Saleem</string>
+    <string name="gmail">brainsmedia.1@gmail.com</string>
+    <string name="share">Share</string>
+    <string name="RateUs">Rate Us:</string>
+    <string name="brains_media">Brains Media</string>
+    <string name="owner">Owner:</string>
+    <string name="moazam_saleem">Moazam Saleem</string>
+    <string name="developed_by">Developed By:</string>
+    <string name="g_mail">Gmail</string>
+    <string name="reach_us">Reach Us:</string>
+    <string name="address">Address:</string>
+    <string name="Address_office">Khan Tower Shahdara</string>
+    <string name="rate_request">If our app worths using. Would you please rate us on Playstore. Please Give us your valuable feedback. This will help us to improve our App</string>
+
+
+
 </resources>

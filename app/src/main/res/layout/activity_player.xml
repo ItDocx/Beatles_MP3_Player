@@ -8,9 +8,51 @@
     tools:context=".PlayerActivity">
 
 
-    <include
-        android:id="@+id/player_toolbar"
-        layout="@layout/music_toolbar"/>
+ <com.google.android.material.appbar.AppBarLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     app:layout_constraintTop_toTopOf="parent">
+
+     <androidx.appcompat.widget.Toolbar
+         android:id="@+id/playerToolbar"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+
+         <ImageView
+             android:padding="@dimen/_5sdp"
+             android:id="@+id/menu_btn"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerVertical="true"
+             android:src="@drawable/ic_menu" />
+
+         <TextView
+             android:singleLine="true"
+             android:id="@+id/title_TV"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:text="@string/app_name"
+             android:textColor="@color/white"
+             android:layout_marginHorizontal="@dimen/_30sdp"
+             android:textSize="@dimen/_17ssp"
+             android:textStyle="bold"
+             tools:ignore="ObsoleteLayoutParam" />
+
+         <ImageView
+             android:padding="@dimen/_5sdp"
+             android:layout_gravity="end"
+             android:id="@+id/search_btn"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginHorizontal="@dimen/_10sdp"
+             android:src="@drawable/ic_search" />
+
+
+     </androidx.appcompat.widget.Toolbar>
+ </com.google.android.material.appbar.AppBarLayout>
 
 
     <ImageView

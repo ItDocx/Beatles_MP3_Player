@@ -3,6 +3,7 @@ package com.brainsMedia.beatlesmp3player.Models
 import android.media.MediaMetadataRetriever
 import com.brainsMedia.beatlesmp3player.FavouriteActivity
 import com.brainsMedia.beatlesmp3player.PlayerActivity
+import java.io.File
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
 
@@ -83,4 +84,18 @@ fun favChecker(id: String): Int{
     }
     return  -1
 }
+
+
+ fun checkPlaylist(Playlist:ArrayList<SongsLIst>):ArrayList<SongsLIst>{
+     Playlist.forEachIndexed{index,music->
+         val file = File(music.path)
+         if (!file.exists()){
+             Playlist.removeAt(index)
+         }
+
+     }
+
+
+     return Playlist
+ }
 

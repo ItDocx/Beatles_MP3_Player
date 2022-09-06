@@ -13,8 +13,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.brainsMedia.beatlesmp3player.Adapter.SongsAdapter
+import com.brainsMedia.beatlesmp3player.Models.SongsPlaylist
+import com.brainsMedia.beatlesmp3player.Models.checkPlaylist
 import com.brainsMedia.beatlesmp3player.databinding.ActivityPlaylistDetailsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.gson.GsonBuilder
 
 class PlaylistDetails : AppCompatActivity() {
 
@@ -38,6 +41,9 @@ class PlaylistDetails : AppCompatActivity() {
 
         currentPlaylistPos = intent.extras?.get("index") as Int
 
+        PlayListActivity.songsPlaylist.ref[currentPlaylistPos].playList =
+            checkPlaylist(Playlist = PlayListActivity.
+            songsPlaylist.ref[currentPlaylistPos].playList)
 
         binding.detailsRecycler.setItemViewCacheSize(10)
         binding.detailsRecycler.setHasFixedSize(true)
@@ -106,6 +112,13 @@ class PlaylistDetails : AppCompatActivity() {
 
             binding.detailsshuffleBtn.visibility = View.VISIBLE
         }
+        detailsAdapter.notifyDataSetChanged()
+
+            val editorplayList = getSharedPreferences("FAVOURITES", MODE_PRIVATE).edit()
+            val jsonStringPlaylist = GsonBuilder().create().toJson(PlayListActivity.songsPlaylist)
+            editorplayList.putString("SongsPlaylist",jsonStringPlaylist)
+            editorplayList.apply()
+
 
     }
 }

@@ -12,6 +12,8 @@ import android.os.IBinder
 import android.os.Looper
 import android.support.v4.media.session.MediaSessionCompat
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
+import com.brainsMedia.beatlesmp3player.MainActivity
 import com.brainsMedia.beatlesmp3player.Models.formatDuration
 import com.brainsMedia.beatlesmp3player.Models.getIMaginNotification
 import com.brainsMedia.beatlesmp3player.PlayerActivity
@@ -40,6 +42,9 @@ class SongsServices: Service() {
     @SuppressLint("UnspecifiedImmutableFlag")
     fun showNotification(playPausebtn: Int){
 
+        val intent = Intent(baseContext,MainActivity::class.java)
+        val contentIntent = PendingIntent.
+        getActivity(this,0,intent,0,)
 
         val prevIntent = Intent(baseContext,NotificationReceivers::class.java).setAction(SongsApplication.PREVIOUS)
         val prevPendingIntent = PendingIntent.getBroadcast(baseContext,0,prevIntent,PendingIntent.FLAG_UPDATE_CURRENT)
@@ -63,6 +68,7 @@ class SongsServices: Service() {
 
 
         val notification = NotificationCompat.Builder(baseContext,SongsApplication.channel_ID)
+            .setContentIntent(contentIntent)
             .setContentTitle(PlayerActivity.songsListPA[PlayerActivity.songPosition].title)
             .setContentText(PlayerActivity.songsListPA[PlayerActivity.songPosition].artist)
             .setSmallIcon(R.drawable.ic_playlist)

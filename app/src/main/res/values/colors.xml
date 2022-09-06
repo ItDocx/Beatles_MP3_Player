@@ -13,6 +13,8 @@
     <color name="darkorange">#FF8C00</color>
     <color name="coralorange">#FF7F50</color>
     <color name="background">#001e2c</color>
+    <color name="txt_hint">#808080</color>
+
 
     <color name="gray">#ababab</color>
 
